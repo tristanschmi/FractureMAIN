@@ -1,14 +1,37 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(menuName = "Single Variables/IntData")]
 public class IntData : ScriptableObject
 {
     [SerializeField] private int value, minValue, maxValue;
+    public int initialValue;
 
     public UnityEvent<float> valueOutOfRange;
     public UnityEvent onValueChanged;
+
+    private void OnEnable()
+    {
+        value = initialValue;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetValue();
+    }
+
+    private void ResetValue()
+    {
+        Value = initialValue;
+    }
 
     public int Value
     {
