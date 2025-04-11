@@ -9,16 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf5b6eb06c627c40a29b33cf13e51f6, type: 3}
-  m_Name: Health
+  m_Script: {fileID: 11500000, guid: 4bd68f5ea76989446b2561e9bfbf5f6a, type: 3}
+  m_Name: LightSpeed
   m_EditorClassIdentifier: 
-  value: 0
-  minValue: 0
-  maxValue: 50
-  initialValue: 50
-  valueOutOfRange:
-    m_PersistentCalls:
-      m_Calls: []
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  speed: 200
