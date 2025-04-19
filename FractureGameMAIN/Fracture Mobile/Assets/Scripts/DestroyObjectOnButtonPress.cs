@@ -6,6 +6,7 @@ public class DestroyObjectsOnButtonPress : MonoBehaviour
     public BoxCollider triggerCollider;
     public int maxCharges = 3; // Maximum number of charges
     public float cooldownTime = 10f; // Cooldown time in seconds
+    public IntData chargeData; // Reference to the IntData ScriptableObject
 
     private int currentCharges;
     private bool isCooldownActive = false;
@@ -14,6 +15,12 @@ public class DestroyObjectsOnButtonPress : MonoBehaviour
     {
         // Initialize charges
         currentCharges = maxCharges;
+
+        // Sync IntData with initial charges
+        if (chargeData != null)
+        {
+            chargeData.Value = currentCharges;
+        }
     }
 
     public void DestroyObjectsInFront()
@@ -32,6 +39,7 @@ public class DestroyObjectsOnButtonPress : MonoBehaviour
 
             // Decrease the charge count
             currentCharges--;
+            UpdateChargeData();
 
             // Start cooldown if charges are depleted
             if (currentCharges == 0)
@@ -57,9 +65,18 @@ public class DestroyObjectsOnButtonPress : MonoBehaviour
         {
             yield return new WaitForSeconds(cooldownTime);
             currentCharges++;
+            UpdateChargeData();
             Debug.Log($"Charge recharged. Current charges: {currentCharges}");
         }
 
         isCooldownActive = false;
+    }
+
+    private void UpdateChargeData()
+    {
+        if (chargeData != null)
+        {
+            chargeData.Value = currentCharges;
+        }
     }
 }
