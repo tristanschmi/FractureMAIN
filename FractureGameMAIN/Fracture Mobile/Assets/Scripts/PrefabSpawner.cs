@@ -1,16 +1,19 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/PrefabSpawner")]
-public class PrefabSpawner : ScriptableObject
+public class PrefabSpawner : MonoBehaviour
 {
     public GameObject prefab;
-    public Vector3 spawnLocation;
+    public Vector3 spawnLocation; // Input spawn location in the Inspector
 
-    public GameObject SpawnPrefab()
+    public GameObject SpawnPrefabAt(Vector3? customSpawnLocation = null)
     {
         if (prefab != null)
         {
-            return Instantiate(prefab, spawnLocation, Quaternion.identity);
+            // Use the custom spawn location if provided, otherwise use the Inspector value
+            Vector3 finalSpawnLocation = customSpawnLocation ?? spawnLocation;
+
+            // Spawn the prefab at the specified location
+            return Instantiate(prefab, finalSpawnLocation, Quaternion.identity);
         }
         else
         {

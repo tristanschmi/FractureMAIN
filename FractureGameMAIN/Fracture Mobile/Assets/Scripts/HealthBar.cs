@@ -7,6 +7,8 @@ public class HealthBar : MonoBehaviour
     public IntData healthData; // Reference to the IntData ScriptableObject
     public Image fillImage; // Reference to the Fill Image of the slider
     public Gradient healthGradient; // Gradient for health colors
+    public string gameOverSceneName; // Name of the scene to load when health reaches 0
+    public SceneLoader sceneLoader; // Reference to the SceneLoader script
 
     private void Start()
     {
@@ -35,6 +37,19 @@ public class HealthBar : MonoBehaviour
         // Calculate the health percentage and update the fill color
         float healthPercentage = healthSlider.value / healthSlider.maxValue;
         fillImage.color = healthGradient.Evaluate(healthPercentage);
+
+        // Check if the health value in the ScriptableObject has reached 0
+        if (healthData.Value <= 0)
+        {
+            if (sceneLoader != null)
+            {
+                sceneLoader.LoadScene(gameOverSceneName);
+            }
+            else
+            {
+                Debug.LogWarning("SceneLoader is not assigned!");
+            }
+        }
 
         Debug.Log($"HealthBar updated: {healthSlider.value}, Color: {fillImage.color}");
     }

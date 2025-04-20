@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: b81801d5d49d94d24a079ce726cc850b
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 57e7b0c82e2086f44a47e02eb18d4d17
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 21a24443a16556f40a8692747345f9d2, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
